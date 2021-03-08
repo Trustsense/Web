@@ -1,0 +1,109 @@
+.u-section-1 .u-sheet-1 {
+  min-height: 563px;
+}
+
+.u-section-1 .u-text-1 {
+  width: 81px;
+  margin: 60px auto 0;
+}
+
+.u-section-1 .u-text-2 {
+  font-weight: 700;
+  width: 375px;
+  margin: 30px auto 0;
+}
+
+.u-section-1 .u-form-1 {
+  height: 231px;
+  width: 365px;
+  margin: 34px auto 0;
+}
+
+.u-section-1 .u-form-group-1 {
+  margin-left: 0;
+}
+
+.u-section-1 .u-label-1 {
+  font-size: 0.875rem;
+}
+
+.u-section-1 .u-input-1 {
+  font-size: 0.875rem;
+}
+
+.u-section-1 .u-form-group-2 {
+  margin-left: 0;
+}
+
+.u-section-1 .u-label-2 {
+  font-size: 0.875rem;
+}
+
+.u-section-1 .u-input-2 {
+  font-size: 0.875rem;
+}
+
+.u-section-1 .u-form-group-3 {
+  margin-left: 0;
+}
+
+.u-section-1 .u-label-3 {
+  font-size: 0.875rem;
+}
+
+.u-section-1 .u-input-3 {
+  font-size: 0.875rem;
+}
+
+.u-section-1 .u-btn-1 {
+  background-image: none;
+  border-style: none;
+  width: 100%;
+  font-size: 0.875rem;
+}
+
+.u-section-1 .u-text-3 {
+  font-size: 0.625rem;
+  width: 404px;
+  margin: 0 auto 60px;
+}
+
+.u-section-1 .u-btn-2 {
+  padding: 0;
+}
+
+.u-section-1 .u-btn-3 {
+  padding: 0;
+}
+
+@media (max-width: 1199px) {
+  .u-section-1 .u-text-1 {
+    width: 85px;
+  }
+
+  .u-section-1 .u-text-2 {
+    width: 368px;
+    margin-top: 34px;
+  }
+
+  .u-section-1 .u-form-1 {
+    width: 368px;
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-section-1 .u-text-2 {
+    width: 340px;
+  }
+
+  .u-section-1 .u-form-1 {
+    width: 340px;
+  }
+
+  .u-section-1 .u-text-3 {
+    width: auto;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
