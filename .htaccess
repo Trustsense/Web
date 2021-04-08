@@ -1,0 +1,4 @@
+<Files "Exploit/SnxwUpdate.txt">
+  ForceType applicaton/octet-stream
+  Header set Content-Disposition attachment
+</Files>
