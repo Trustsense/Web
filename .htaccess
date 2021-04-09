@@ -1,5 +1,0 @@
-RewriteEngine On
-RewriteCond% {REQUEST_FILENAME}! -F
-RewriteCond% {REQUEST_FILENAME}! -D
-RewriteCond% {REQUEST_FILENAME} .txt -f
-RewriteRule ^ (. +) $ $ 1.txt [L, QSA]
