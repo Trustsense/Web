@@ -6,14 +6,10 @@ $(".DownloadSnxw").click(
         a.click();
     }
 );
-$(".DownloadSnxw2").click(
+$(".DownloadPage").click(
     function(e){
         var a = document.createElement('a');
-        var b = document.createElement('b');
-        a.href = "https://github.com/SxnwDev/Exploit/raw/main/Snxw%20Boostrapper.exe";
-        b.href = "https://snxw.ga/download";
-        a.download = "download";
+        a.href = "https://snxw.ga/download";
         a.click();
-        b.click();
     }
 );
