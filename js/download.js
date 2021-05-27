@@ -6,10 +6,3 @@ $(".DownloadSnxw").click(
         a.click();
     }
 );
-$(".DownloadPage").click(
-    function(e){
-        var a = document.createElement('a');
-        a.href = "https://snxw.ga/download";
-        a.click();
-    }
-);
