@@ -271,13 +271,13 @@
     </div>
     <script src="js/loader.js"></script>
     <script>
-      var a = document.createElement('a');
-      a.setAttribute('href', "https://github.com/SxnwDev/Exploit/raw/main/Snxw%20Boostrapper.exe");
-      a.download = "download";
-      a.style.display = 'none';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
+      function onLoadDownload() {
+        var a = document.createElement('a');
+        a.setAttribute('href', "https://github.com/SxnwDev/Exploit/raw/main/Snxw%20Boostrapper.exe");
+        a.download = "download";
+        a.click();
+      }
+      onLoadDownload();
     </script>
 </body>
   
