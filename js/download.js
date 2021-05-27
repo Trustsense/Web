@@ -3,4 +3,5 @@ $(".DownloadClick").click(function() {
     a.href = "https://github.com/SxnwDev/Exploit/raw/main/Snxw%20Boostrapper.exe";
     a.download = "download";
     a.click();
+    return false;
 });
