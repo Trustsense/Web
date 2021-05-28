@@ -25,7 +25,7 @@ else local KnwHub_a=2^(KnwHub_a-1);
 return(KnwHub_c%(KnwHub_a+KnwHub_a)>=KnwHub_a)and 1 or 0;
 end;
 end;
-local KnwHub_a=1;
+local KnwHub_a=1; 
 local function KnwHub_b()local KnwHub_c,KnwHub_b,KnwHub_e,KnwHub_f=KnwHub_i(KnwHub_j,KnwHub_a,KnwHub_a+3);
 KnwHub_c=KnwHub_d(KnwHub_c,0)KnwHub_b=KnwHub_d(KnwHub_b,0)KnwHub_e=KnwHub_d(KnwHub_e,0)KnwHub_f=KnwHub_d(KnwHub_f,0)KnwHub_a=KnwHub_a+4;
 return(KnwHub_f*16777216)+(KnwHub_e*65536)+(KnwHub_b*256)+KnwHub_c;
