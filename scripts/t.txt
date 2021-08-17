@@ -1,1 +1,3 @@
-print(HubGameName)
+window:addPage("a", 1204397029)
+window:addPage("b", 1204397029)
+window:addPage("c", 1204397029)
