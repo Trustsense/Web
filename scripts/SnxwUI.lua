@@ -515,12 +515,6 @@ do
 		self.toggling = false
 	end
 	
-	function library:check()
-		print(library.container)
-		if library.container then return true end
-		return false
-	end
-	
 	-- new modules
 	
 	function library:Notify(title, text, callback)
