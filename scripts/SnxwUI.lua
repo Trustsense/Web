@@ -477,14 +477,13 @@ do
 	end
 	
 	function library:toggle()
-	
-		if self.toggling then
-			return
-		end
+
+		if self.toggling then return end
 		
 		self.toggling = true
 		
-		local container = self.container.Main
+		local container = self.container:FindFirstChild("Main")
+        if not container then return end
 		local topbar = container.TopBar
 		
 		if self.position then
@@ -843,7 +842,7 @@ do
 		return label
 	end
 	
-	function section:addButton(title, callback)
+	function section:addButton(title, callback, ToolTip, ToolTipText)
 		local button = utility:Create("ImageButton", {
 			Name = "Button",
 			Parent = self.container,
@@ -869,13 +868,66 @@ do
 				TextTransparency = 0.10000000149012
 			})
 		})
-		
-		table.insert(self.modules, button)
-		--self:Resize()
-		
-		local text = button.Title
-		local debounce
-		
+        
+        if ToolTip then
+            local toolTip = utility:Create("ImageButton", {
+                Name = "ToolTip",
+                Parent = button,
+                BackgroundTransparency = 1,
+                BorderSizePixel = 0,
+                Size = UDim2.new(.05, 0, 0, 16),
+                Position = UDim2.new(.9, 0, .25, 0), 
+                ZIndex = 2,
+                Image = "rbxassetid://2541869220",
+                ImageColor3 = themes.TextColor,
+                ImageTransparency = themes.Transparency,
+            })
+
+            local container = utility:Create("ImageLabel", {
+                Name = "ToolTip",
+                Parent = self.page.library.container,
+                BackgroundTransparency = 1,
+                Size = UDim2.new(0, 0, 0, 30),
+                Image = "rbxassetid://4641149554",
+                ImageColor3 = themes.Background,
+                ImageTransparency = themes.Transparency
+            }, {
+                utility:Create("TextLabel", {
+                    Name = "Text",
+                    BackgroundTransparency = 1,
+                    Visible = false,
+                    Size = UDim2.new(1, 0, 0, 30),
+                    ZIndex = 3,
+                    Font = Enum.Font.Gotham,
+                    Text = ToolTipText,
+                    TextColor3 = themes.TextColor,
+                    TextSize = 12,
+                    TextTransparency = 0.10000000149012
+                })
+            })
+
+            toolTip.MouseEnter:Connect(function()
+                container.Position = UDim2.new(0, toolTip.AbsolutePosition.X + 70, 0, toolTip.AbsolutePosition.Y - 7)
+                container:TweenSize(UDim2.new(0, 400, 0, 30), Enum.EasingDirection.In,	Enum.EasingStyle.Sine, .8, true, function()
+                    if container.Size == UDim2.new(0, 400, 0, 30) then
+                        container.Text.Visible = true
+                    end
+                end)                
+            end)
+            toolTip.MouseLeave:Connect(function()
+                container:TweenSize(UDim2.new(0, 0, 0, 30), Enum.EasingDirection.In, Enum.EasingStyle.Sine, .5, true, function()
+                    container.Text.Visible = false
+                end)
+                container.Text.Visible = false
+            end)
+        end
+
+        table.insert(self.modules, button)
+        --self:Resize()
+            
+        local text = button.Title
+        local debounce
+
 		button.MouseButton1Click:Connect(function()
 			
 			if debounce then
@@ -904,13 +956,17 @@ do
 		return button
 	end
 	
-	function section:addToggle(title, default, callback)
+	function section:addToggle(title, default, callback, ToolTip, ToolTipText)
+        local size = UDim2.new(1, 0, 0, 30)
+        if ToolTip then
+            size = UDim2.new(.9, 0, 0, 30)
+        end
 		local toggle = utility:Create("ImageButton", {
 			Name = "Toggle",
 			Parent = self.container,
 			BackgroundTransparency = 1,
 			BorderSizePixel = 0,
-			Size = UDim2.new(1, 0, 0, 30),
+			Size = size,
 			ZIndex = 2,
 			Image = "rbxassetid://5028857472",
 			ImageColor3 = themes.DarkContrast,
@@ -959,6 +1015,59 @@ do
 			})
 		})
 		
+        if ToolTip then
+            local toolTip = utility:Create("ImageButton", {
+                Name = "ToolTip",
+                Parent = toggle,
+                BackgroundTransparency = 1,
+                BorderSizePixel = 0,
+                Size = UDim2.new(.055, 0, 0, 16),
+                Position = UDim2.new(1.04, 0, .25, 0), 
+                ZIndex = 2,
+                Image = "rbxassetid://2541869220",
+                ImageColor3 = themes.TextColor,
+                ImageTransparency = themes.Transparency,
+            })
+
+            local container = utility:Create("ImageLabel", {
+                Name = "ToolTip",
+                Parent = self.page.library.container,
+                BackgroundTransparency = 1,
+                Size = UDim2.new(0, 0, 0, 30),
+                Image = "rbxassetid://4641149554",
+                ImageColor3 = themes.Background,
+                ImageTransparency = themes.Transparency
+            }, {
+                utility:Create("TextLabel", {
+                    Name = "Text",
+                    BackgroundTransparency = 1,
+                    Visible = false,
+                    Size = UDim2.new(1, 0, 0, 30),
+                    ZIndex = 3,
+                    Font = Enum.Font.Gotham,
+                    Text = ToolTipText,
+                    TextColor3 = themes.TextColor,
+                    TextSize = 12,
+                    TextTransparency = 0.10000000149012
+                })
+            })
+
+            toolTip.MouseEnter:Connect(function()
+                container.Position = UDim2.new(0, toolTip.AbsolutePosition.X + 70, 0, toolTip.AbsolutePosition.Y - 7)
+                container:TweenSize(UDim2.new(0, 400, 0, 30), Enum.EasingDirection.In,	Enum.EasingStyle.Sine, .8, true, function()
+                    if container.Size == UDim2.new(0, 400, 0, 30) then
+                        container.Text.Visible = true
+                    end
+                end)                
+            end)
+            toolTip.MouseLeave:Connect(function()
+                container:TweenSize(UDim2.new(0, 0, 0, 30), Enum.EasingDirection.In, Enum.EasingStyle.Sine, .5, true, function()
+                    container.Text.Visible = false
+                end)
+                container.Text.Visible = false
+            end)
+        end
+
 		table.insert(self.modules, toggle)
 		--self:Resize()
 		
@@ -1089,13 +1198,17 @@ do
 		return textbox
 	end
 	
-	function section:addKeybind(title, default, callback, changedCallback)
+	function section:addKeybind(title, default, callback, changedCallback, ToolTip, ToolTipText)
+        local size = UDim2.new(1, 0, 0, 30)
+        if ToolTip then
+            size = UDim2.new(.9, 0, 0, 30)
+        end
 		local keybind = utility:Create("ImageButton", {
 			Name = "Keybind",
 			Parent = self.container,
 			BackgroundTransparency = 1,
 			BorderSizePixel = 0,
-			Size = UDim2.new(1, 0, 0, 30),
+			Size = size,
 			ZIndex = 2,
 			Image = "rbxassetid://5028857472",
 			ImageColor3 = themes.DarkContrast,
@@ -1142,6 +1255,59 @@ do
 				})
 			})
 		})
+
+        if ToolTip then
+            local toolTip = utility:Create("ImageButton", {
+                Name = "ToolTip",
+                Parent = keybind,
+                BackgroundTransparency = 1,
+                BorderSizePixel = 0,
+                Size = UDim2.new(.055, 0, 0, 16),
+                Position = UDim2.new(1.04, 0, .25, 0), 
+                ZIndex = 2,
+                Image = "rbxassetid://2541869220",
+                ImageColor3 = themes.TextColor,
+                ImageTransparency = themes.Transparency,
+            })
+
+            local container = utility:Create("ImageLabel", {
+                Name = "ToolTip",
+                Parent = self.page.library.container,
+                BackgroundTransparency = 1,
+                Size = UDim2.new(0, 0, 0, 30),
+                Image = "rbxassetid://4641149554",
+                ImageColor3 = themes.Background,
+                ImageTransparency = themes.Transparency
+            }, {
+                utility:Create("TextLabel", {
+                    Name = "Text",
+                    BackgroundTransparency = 1,
+                    Visible = false,
+                    Size = UDim2.new(1, 0, 0, 30),
+                    ZIndex = 3,
+                    Font = Enum.Font.Gotham,
+                    Text = ToolTipText,
+                    TextColor3 = themes.TextColor,
+                    TextSize = 12,
+                    TextTransparency = 0.10000000149012
+                })
+            })
+
+            toolTip.MouseEnter:Connect(function()
+                container.Position = UDim2.new(0, toolTip.AbsolutePosition.X + 70, 0, toolTip.AbsolutePosition.Y - 7)
+                container:TweenSize(UDim2.new(0, 400, 0, 30), Enum.EasingDirection.In,	Enum.EasingStyle.Sine, .8, true, function()
+                    if container.Size == UDim2.new(0, 400, 0, 30) then
+                        container.Text.Visible = true
+                    end
+                end)                
+            end)
+            toolTip.MouseLeave:Connect(function()
+                container:TweenSize(UDim2.new(0, 0, 0, 30), Enum.EasingDirection.In, Enum.EasingStyle.Sine, .5, true, function()
+                    container.Text.Visible = false
+                end)
+                container.Text.Visible = false
+            end)
+        end
 		
 		table.insert(self.modules, keybind)
 		--self:Resize()
