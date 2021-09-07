@@ -516,7 +516,8 @@ do
 	end
 	
 	function library:check()
-		if self.container then return true end
+		print(library.container)
+		if library.container then return true end
 		return false
 	end
 	
