@@ -2053,7 +2053,7 @@ do
 			Name = "Dropdown",
 			Parent = self.container,
 			BackgroundTransparency = 1,
-			Size = UDim2.new(1, 0, 0, 30),
+			Size = size,
 			ClipsDescendants = true
 		}, {
 			utility:Create("UIListLayout", {
