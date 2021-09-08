@@ -2044,7 +2044,11 @@ do
 		return slider
 	end
 	
-	function section:addDropdown(title, list, callback)
+	function section:addDropdown(title, list, callback, ToolTip, ToolTipText)
+		local size = UDim2.new(1, 0, 0, 30)
+		if ToolTip then
+		    size = UDim2.new(.9, 0, 0, 30)
+		end
 		local dropdown = utility:Create("Frame", {
 			Name = "Dropdown",
 			Parent = self.container,
