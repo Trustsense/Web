@@ -2132,6 +2132,59 @@ do
 				})
 			})
 		})
+
+		if ToolTip then
+		    local toolTip = utility:Create("ImageButton", {
+			Name = "ToolTip",
+			Parent = dropdown,
+			BackgroundTransparency = 1,
+			BorderSizePixel = 0,
+			Size = UDim2.new(.055, 0, 0, 16),
+			Position = UDim2.new(1.04, 0, .25, 0), 
+			ZIndex = 2,
+			Image = "rbxassetid://2541869220",
+			ImageColor3 = themes.TextColor,
+			ImageTransparency = themes.Transparency,
+		    })
+
+		    local container = utility:Create("ImageLabel", {
+			Name = "ToolTip",
+			Parent = self.page.library.container,
+			BackgroundTransparency = 1,
+			Size = UDim2.new(0, 0, 0, 30),
+			Image = "rbxassetid://4641149554",
+			ImageColor3 = themes.Background,
+			ImageTransparency = themes.Transparency
+		    }, {
+			utility:Create("TextLabel", {
+			    Name = "Text",
+			    BackgroundTransparency = 1,
+			    Visible = false,
+			    Size = UDim2.new(1, 0, 0, 30),
+			    ZIndex = 3,
+			    Font = Enum.Font.Gotham,
+			    Text = ToolTipText,
+			    TextColor3 = themes.TextColor,
+			    TextSize = 12,
+			    TextTransparency = 0.10000000149012
+			})
+		    })
+
+		    toolTip.MouseEnter:Connect(function()
+			container.Position = UDim2.new(0, toolTip.AbsolutePosition.X + 70, 0, toolTip.AbsolutePosition.Y - 7)
+			container:TweenSize(UDim2.new(0, 400, 0, 30), Enum.EasingDirection.In,	Enum.EasingStyle.Sine, .8, true, function()
+			    if container.Size == UDim2.new(0, 400, 0, 30) then
+				container.Text.Visible = true
+			    end
+			end)                
+		    end)
+		    toolTip.MouseLeave:Connect(function()
+			container:TweenSize(UDim2.new(0, 0, 0, 30), Enum.EasingDirection.In, Enum.EasingStyle.Sine, .5, true, function()
+			    container.Text.Visible = false
+			end)
+			container.Text.Visible = false
+		    end)
+		end
 		
 		table.insert(self.modules, dropdown)
 		--self:Resize()
