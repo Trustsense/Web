@@ -2572,6 +2572,10 @@ do
 		
 		local frame = dropdown.List.Frame
 		
+		if dropdown:FindFirstChild("ToolTip") then
+			print("ToolTip")
+		end
+		
 		utility:Tween(dropdown, {Size = UDim2.new(1, 0, 0, (entries == 0 and 30) or math.clamp(entries, 0, 3) * 34 + 38)}, 0.3)
 		utility:Tween(dropdown.Search.Button, {Rotation = list and 180 or 0}, 0.3)
 		
