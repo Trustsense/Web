@@ -2045,15 +2045,15 @@ do
 	end
 	
 	function section:addDropdown(title, list, callback, ToolTip, ToolTipText)
-		local size = UDim2.new(1, 0, 0, 30)
+		local size = 1
 		if ToolTip then
-		    size = UDim2.new(.9, 0, 0, 30)
+		    size = .9
 		end
 		local dropdown = utility:Create("Frame", {
 			Name = "Dropdown",
 			Parent = self.container,
 			BackgroundTransparency = 1,
-			Size = size,
+			Size = UDim2.new(1, 0, 0, 30),
 			ClipsDescendants = true
 		}, {
 			utility:Create("UIListLayout", {
@@ -2064,7 +2064,7 @@ do
 				Name = "Search",
 				BackgroundTransparency = 1,
 				BorderSizePixel = 0,
-				Size = UDim2.new(1, 0, 0, 30),
+				Size = UDim2.new(size, 0, 0, 30),
 				ZIndex = 2,
 				Image = "rbxassetid://5028857472",
 				ImageColor3 = themes.DarkContrast,
@@ -2104,7 +2104,7 @@ do
 				Name = "List",
 				BackgroundTransparency = 1,
 				BorderSizePixel = 0,
-				Size = UDim2.new(1, 0, 1, -34),
+				Size = UDim2.new(size, 0, 1, -34),
 				ZIndex = 2,
 				Image = "rbxassetid://5028857472",
 				ImageColor3 = themes.Background,
@@ -2136,7 +2136,7 @@ do
 		if ToolTip then
 		    local toolTip = utility:Create("ImageButton", {
 			Name = "ToolTip",
-			Parent = dropdown,
+			Parent = dropdown.Search,
 			BackgroundTransparency = 1,
 			BorderSizePixel = 0,
 			Size = UDim2.new(.055, 0, 0, 16),
