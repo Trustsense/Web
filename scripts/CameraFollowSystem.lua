@@ -337,9 +337,9 @@ local singleton = CLASS.new()
 USER_INPUT_SERVICE.InputChanged:Connect(function(input)
 	if input.UserInputType == Enum.UserInputType.MouseWheel then
 		if input.Position.Z > 0 then
-			singleton.CameraSettings.DefaultShoulder.FieldOfView -= 5
+			singleton.CameraSettings.DefaultShoulder.Offset.Z -= 1
 		else
-			singleton.CameraSettings.DefaultShoulder.FieldOfView += 5
+			singleton.CameraSettings.DefaultShoulder.Offset.Z += 1
 		end
 		singleton:SetActiveCameraSettings("DefaultShoulder")
 	end
