@@ -338,9 +338,9 @@ USER_INPUT_SERVICE.InputChanged:Connect(function(input)
 	if singleton.IsEnabled == true then
 		if input.UserInputType == Enum.UserInputType.MouseWheel then
 			if input.Position.Z > 0 then
-				singleton.CameraSettings.DefaultShoulder.Offset.Z -= 1
+				singleton.CameraSettings.DefaultShoulder.Offset = Vector3.new(singleton.CameraSettings.DefaultShoulder.Offset.X, singleton.CameraSettings.DefaultShoulder.Offset.Y, singleton.CameraSettings.DefaultShoulder.Offset.Z - 1)
 			else
-				singleton.CameraSettings.DefaultShoulder.Offset.Z += 1
+				singleton.CameraSettings.DefaultShoulder.Offset = Vector3.new(singleton.CameraSettings.DefaultShoulder.Offset.X, singleton.CameraSettings.DefaultShoulder.Offset.Y, singleton.CameraSettings.DefaultShoulder.Offset.Z + 1)
 			end
 			singleton:SetActiveCameraSettings("DefaultShoulder")
 		end
