@@ -46,6 +46,7 @@ function CLASS.new()
 			IsCharacterAligned = false,
 			IsMouseSteppedIn = false,
 			IsEnabled = false,
+			Obstructions = false
 			----
 			
 			--// Events //--
@@ -250,7 +251,9 @@ function CLASS:Update()
 			local obstructionDisplacement = (raycastResult.Position - humanoidRootPart.Position)
 			local obstructionPosition = humanoidRootPart.Position + (obstructionDisplacement.Unit * (obstructionDisplacement.Magnitude - 0.1))
 			local x,y,z,r00,r01,r02,r10,r11,r12,r20,r21,r22 = newCameraCFrame:components()
-			--newCameraCFrame = CFrame.new(obstructionPosition.x, obstructionPosition.y, obstructionPosition.z, r00, r01, r02, r10, r11, r12, r20, r21, r22)
+			if self.Obstructions == true then
+				newCameraCFrame = CFrame.new(obstructionPosition.x, obstructionPosition.y, obstructionPosition.z, r00, r01, r02, r10, r11, r12, r20, r21, r22)
+			end
 		end
 		----
 		
