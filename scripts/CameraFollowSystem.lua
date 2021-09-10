@@ -338,7 +338,7 @@ CLASS.__index = CLASS
 local singleton = CLASS.new()
 
 USER_INPUT_SERVICE.InputChanged:Connect(function(input)
-	if singleton.IsEnabled == true then
+	if singleton.IsEnabled == true and singleton.IsMouseSteppedIn == false then
 		if input.UserInputType == Enum.UserInputType.MouseWheel then
 			local Offset = singleton.CameraSettings.DefaultShoulder.Offset
 			if input.Position.Z > 0 and Offset.Z > 8 then
