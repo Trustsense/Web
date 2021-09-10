@@ -72,8 +72,7 @@ function CLASS.new()
 				
 				DefaultShoulder = {
 					FieldOfView = 70,
-					Zoom = 8,
-					Offset = Vector3.new(2.5, 2.5, Zoom),
+					Offset = Vector3.new(2.5, 2.5, 8),
 					Sensitivity = 3,
 					LerpSpeed = 0.5
 				}
@@ -338,10 +337,12 @@ local singleton = CLASS.new()
 USER_INPUT_SERVICE.InputChanged:Connect(function(input)
 	if singleton.IsEnabled == true then
 		if input.UserInputType == Enum.UserInputType.MouseWheel then
+			local Zoom = Instance.new("Vector3Value")
+			Zoom.Value = singleton.CameraSettings.DefaultShoulder.Offset
 			if input.Position.Z > 0 then
-				--singleton.CameraSettings.DefaultShoulder.Offset.Z -= 1
+				--singleton.CameraSettings.DefaultShoulder.Offset.Z = Zoom
 			else
-				--singleton.CameraSettings.DefaultShoulder.Offset.Z += 1
+				--singleton.CameraSettings.DefaultShoulder.Offset.Z = Zoom
 			end
 			singleton:SetActiveCameraSettings("DefaultShoulder")
 		end
