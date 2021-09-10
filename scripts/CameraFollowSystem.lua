@@ -335,13 +335,8 @@ CLASS.__index = CLASS
 local singleton = CLASS.new()
 
 USER_INPUT_SERVICE.InputChanged:Connect(function(input)
-  if input.UserInputType == Enum.UserInputType.MouseWheel then
-    if input.Position.Z > 0 then
-				singleton.dataTable.CameraSettings.DefaultShoulder.FieldOfView -= 5
-		else
-				singleton.dataTable.CameraSettings.DefaultShoulder.FieldOfView += 5
-		end
-    singleton:SetActiveCameraSettings("DefaultShoulder")
+	if input.UserInputType == Enum.UserInputType.MouseWheel then
+			print(singleton.__index(CameraSettings))
 	end
 end)
 
