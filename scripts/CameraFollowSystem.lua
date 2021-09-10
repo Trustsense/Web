@@ -340,9 +340,9 @@ USER_INPUT_SERVICE.InputChanged:Connect(function(input)
 			local Zoom = Instance.new("Vector3Value")
 			Zoom.Value = singleton.CameraSettings.DefaultShoulder.Offset
 			if input.Position.Z > 0 then
-				--singleton.CameraSettings.DefaultShoulder.Offset.Z = Zoom
+				singleton.CameraSettings.DefaultShoulder.Offset.Z = Vector3.new(Zoom.X, Zoom.Y, Zoom.Z - 1)
 			else
-				--singleton.CameraSettings.DefaultShoulder.Offset.Z = Zoom
+				singleton.CameraSettings.DefaultShoulder.Offset.Z = Vector3.new(Zoom.X, Zoom.Y, Zoom.Z + 1)
 			end
 			singleton:SetActiveCameraSettings("DefaultShoulder")
 		end
