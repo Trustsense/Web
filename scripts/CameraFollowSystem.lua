@@ -46,7 +46,7 @@ function CLASS.new()
 			IsCharacterAligned = false,
 			IsMouseSteppedIn = false,
 			IsEnabled = false,
-			Obstructions = false
+			Obstructions = false,
 			----
 			
 			--// Events //--
