@@ -337,10 +337,11 @@ local singleton = CLASS.new()
 USER_INPUT_SERVICE.InputChanged:Connect(function(input)
 	if singleton.IsEnabled == true then
 		if input.UserInputType == Enum.UserInputType.MouseWheel then
-			if input.Position.Z > 0 then
-				singleton.CameraSettings.DefaultShoulder.Offset = Vector3.new(singleton.CameraSettings.DefaultShoulder.Offset.X, singleton.CameraSettings.DefaultShoulder.Offset.Y, singleton.CameraSettings.DefaultShoulder.Offset.Z - 1)
-			else
-				singleton.CameraSettings.DefaultShoulder.Offset = Vector3.new(singleton.CameraSettings.DefaultShoulder.Offset.X, singleton.CameraSettings.DefaultShoulder.Offset.Y, singleton.CameraSettings.DefaultShoulder.Offset.Z + 1)
+			local Offset = singleton.CameraSettings.DefaultShoulder.Offset
+			if input.Position.Z > 0 and Offset.Z > 8 then
+				singleton.CameraSettings.DefaultShoulder.Offset = Vector3.new(Offset.X, Offset.Y, Offset.Z - 5)
+			elseif input.Position.Z < 0 and Offset.Z < game.Players.LocalPlayer.CameraMaxZoomDistance then
+				singleton.CameraSettings.DefaultShoulder.Offset = Vector3.new(Offset.X, Offset.Y, Offset.Z + 5)
 			end
 			singleton:SetActiveCameraSettings("DefaultShoulder")
 		end
