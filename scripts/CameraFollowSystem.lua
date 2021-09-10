@@ -11,7 +11,7 @@ local USER_INPUT_SERVICE = game:GetService("UserInputService")
 local LOCAL_PLAYER = PLAYERS_SERVICE.LocalPlayer
 local MOUSE = LOCAL_PLAYER:GetMouse()
 
-local UPDATE_UNIQUE_KEY = "OTS_CAMERA_SYSTEM_UPDATE"
+local UPDATE_UNIQUE_KEY = "CAMERA_SYSTEM_UPDATE"
 
 --// VARIABLES //--
 
