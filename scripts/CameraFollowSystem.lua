@@ -246,12 +246,7 @@ function CLASS:Update()
 		----
 		
 		--// Address obstructions if any //--
-		if (raycastResult ~= nil) then
-			local obstructionDisplacement = (raycastResult.Position - humanoidRootPart.Position)
-			local obstructionPosition = humanoidRootPart.Position + (obstructionDisplacement.Unit * (obstructionDisplacement.Magnitude - 0.1))
-			local x,y,z,r00,r01,r02,r10,r11,r12,r20,r21,r22 = newCameraCFrame:components()
-			newCameraCFrame = CFrame.new(obstructionPosition.x, obstructionPosition.y, obstructionPosition.z, r00, r01, r02, r10, r11, r12, r20, r21, r22)
-		end
+		
 		----
 		
 		--// Address character alignment //--
@@ -335,7 +330,7 @@ CLASS.__index = CLASS
 local singleton = CLASS.new()
 
 USER_INPUT_SERVICE.InputChanged:Connect(function(input)
-	if singleton.IsEnabled == true then
+	if singleton.IsEnabled == true and IsMouseSteppedIn == false then
 		if input.UserInputType == Enum.UserInputType.MouseWheel then
 			local Offset = singleton.CameraSettings.DefaultShoulder.Offset
 			if input.Position.Z > 0 and Offset.Z > 8 then
