@@ -2377,29 +2377,12 @@ do
 		error("No module found under "..tostring(info))
 	end
 	
-	function section:delModule(info)
-
-		if table.find(self.modules, info) then
-			for i = 1, #self.modules do
-				if self.modules[i] == info then
-					table.remove(self.modules, i)
-					info:Destroy()
-				end
-			end
-		end
+	function section:clear()
 		
 		for i, module in pairs(self.modules) do
-			if (module:FindFirstChild("Title") or module:FindFirstChild("TextBox", true)).Text == info then
-				for i = 1, #self.modules do
-					if self.modules[i] == module then
-						table.remove(self.modules, i)
-						module:Destroy()
-					end
-				end
-			end
+			module:Destroy()
 		end
-		
-		error("No module found under "..tostring(info))
+		table.clear(self.modules)
 	end
 	
 	-- updates
