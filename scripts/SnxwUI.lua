@@ -2378,7 +2378,12 @@ do
 	end
 	
 	-- updates
-	
+	function section:Destroy(Module)
+		local module = utility:Find(self.modules, Module)
+		if module then
+			module:Destroy()
+		end
+	end
 	function section:updateButton(button, title)
 		button = self:getModule(button)
 		
