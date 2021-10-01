@@ -23,9 +23,19 @@ local utility = {}
 
 -- themes
 local UserInfo = {}
-pcall(function()
-    UserInfo = http:JSONDecode(readfile("SnxwInfo.lua"));
-end)
+if isfile("SnxwInfo.lua") then
+	UserInfo = http:JSONDecode(readfile("SnxwInfo.lua"));
+else
+	UserInfo["Theme.Background"] = tostring(Color3.fromRGB(24, 24, 24))
+	UserInfo["Theme.Glow"] = tostring(Color3.fromRGB(0, 0, 0))
+	UserInfo["Theme.Accent"] = tostring(Color3.fromRGB(10, 10, 10))
+	UserInfo["Theme.LightContrast"] = tostring(Color3.fromRGB(20, 20, 20))
+	UserInfo["Theme.DarkContrast"] = tostring(Color3.fromRGB(14, 14, 14))
+	UserInfo["Theme.TextColor"] = tostring(Color3.fromRGB(255, 255, 255))
+	UserInfo["Theme.Transparency"] = tostring(.5)
+	writefile("SnxwInfo.lua", http:JSONEncode(UserInfo));
+end
+
 local objects = {}
 local themes = {
 	Background = Color3.new(UserInfo["Theme.Background"]:split(",")[1],UserInfo["Theme.Background"]:split(",")[2],UserInfo["Theme.Background"]:split(",")[3]) or Color3.fromRGB(24, 24, 24),
@@ -34,7 +44,7 @@ local themes = {
 	LightContrast = Color3.new(UserInfo["Theme.LightContrast"]:split(",")[1],UserInfo["Theme.LightContrast"]:split(",")[2],UserInfo["Theme.LightContrast"]:split(",")[3]) or Color3.fromRGB(20, 20, 20),
 	DarkContrast = Color3.new(UserInfo["Theme.DarkContrast"]:split(",")[1],UserInfo["Theme.DarkContrast"]:split(",")[2],UserInfo["Theme.DarkContrast"]:split(",")[3]) or Color3.fromRGB(14, 14, 14),
 	TextColor = Color3.new(UserInfo["Theme.TextColor"]:split(",")[1],UserInfo["Theme.TextColor"]:split(",")[2],UserInfo["Theme.TextColor"]:split(",")[3]) or Color3.fromRGB(255, 255, 255),
-	Transparency = .5
+	Transparency = tonumber(UserInfo["Theme.Transparency"]) or .5
 }
 
 function SaveInfo()
@@ -44,6 +54,7 @@ function SaveInfo()
 	UserInfo["Theme.LightContrast"] = tostring(themes.LightContrast)
 	UserInfo["Theme.DarkContrast"] = tostring(themes.DarkContrast)
 	UserInfo["Theme.TextColor"] = tostring(themes.TextColor)
+	UserInfo["Theme.Transparency"] = tostring(themes.Transparency)
 	writefile("SnxwInfo.lua", http:JSONEncode(UserInfo));
 end
 
@@ -54,7 +65,7 @@ do
 		for i, v in pairs(properties or {}) do
 			object[i] = v
 			
-			if typeof(v) == "Color3" then -- save for theme changer later
+			if typeof(v) == "Color3" or v == themes.Transparency then -- save for theme changer later
 				local theme = utility:Find(themes, v)
 				
 				if theme then
@@ -2723,9 +2734,8 @@ do
 	end
 end
 
-return library
+--return library
 
---[[
 if game.CoreGui:FindFirstChild(game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name) then
     game.CoreGui:FindFirstChild(game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name):Destroy()
 end
@@ -2733,6 +2743,7 @@ local window = library.new(game:GetService("MarketplaceService"):GetProductInfo(
 
 local Page = window:addPage("Info", 322206910)
 local Selection = Page:addSection(nil, false);
+
 
 Selection:addLabel("I want the <font color='#FFA500'>orange</font> candy.")
 Selection:addLabel("I want the <font color='rgb(255,165,0)'>orange</font> candy.")
@@ -2757,4 +2768,3 @@ Selection:addKeybind("Keybind", Enum.KeyCode.LeftAlt, function()end, function()e
 Selection:addColorPicker("ColorPicker", Color3.fromRGB(255, 255, 255), function()end, "ToolTip Text")
 Selection:addSlider("Slider", 3, 0, 10, function()end, "ToolTip Text")
 Selection:addDropdown("Dropdown", {"Element 1", "Element 2"}, function()end, "ToolTip Text")
-]]
