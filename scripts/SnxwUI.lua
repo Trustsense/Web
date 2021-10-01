@@ -2734,8 +2734,8 @@ do
 	end
 end
 
---return library
-
+return library
+--[[
 if game.CoreGui:FindFirstChild(game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name) then
     game.CoreGui:FindFirstChild(game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name):Destroy()
 end
@@ -2768,3 +2768,4 @@ Selection:addKeybind("Keybind", Enum.KeyCode.LeftAlt, function()end, function()e
 Selection:addColorPicker("ColorPicker", Color3.fromRGB(255, 255, 255), function()end, "ToolTip Text")
 Selection:addSlider("Slider", 3, 0, 10, function()end, "ToolTip Text")
 Selection:addDropdown("Dropdown", {"Element 1", "Element 2"}, function()end, "ToolTip Text")
+]]
