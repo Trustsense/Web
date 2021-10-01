@@ -559,7 +559,7 @@ do
 	
 	-- new modules
 	
-	function library:Notify(title, text, callback)
+	function library:Notify(title, text, time)
 	
 		-- overwrite last notification
 		if self.activeNotification then
@@ -690,16 +690,19 @@ do
 				return
 			end
 			
-			if callback then
-				callback(false)
-			end
-			
 			close()
 		end)
+		if time then
+			wait(time)
+			if not active then 
+				return
+			end
+			close()
+		end
 	end
 
 
-	function library:NotifyQuestion(title, text, callback)
+	function library:NotifyQuestion(title, text, callback, time)
 	
 		-- overwrite last notification
 		if self.activeNotification then
@@ -858,6 +861,13 @@ do
 			
 			close()
 		end)
+		if time then
+			wait(time)
+			if not active then 
+				return
+			end
+			close()
+		end
 	end
 
 	function section:addLabel(Label)
@@ -2735,6 +2745,7 @@ do
 end
 
 return library
+
 --[[
 if game.CoreGui:FindFirstChild(game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name) then
     game.CoreGui:FindFirstChild(game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name):Destroy()
@@ -2768,4 +2779,13 @@ Selection:addKeybind("Keybind", Enum.KeyCode.LeftAlt, function()end, function()e
 Selection:addColorPicker("ColorPicker", Color3.fromRGB(255, 255, 255), function()end, "ToolTip Text")
 Selection:addSlider("Slider", 3, 0, 10, function()end, "ToolTip Text")
 Selection:addDropdown("Dropdown", {"Element 1", "Element 2"}, function()end, "ToolTip Text")
+
+window:Notify("Snxw Hub", "Welcome " .. player.Name, 5)
+window:NotifyQuestion("Snxw Hub", "NotifyQuestion", function(value)
+	if value then
+		print("accept")
+	else
+		print("decline")
+	end
+end, 5)
 ]]
