@@ -375,7 +375,7 @@ do
 			BackgroundTransparency = 1,
 			BorderSizePixel = 0,
 			Position = UDim2.new(0, 48, 0, 46),
-			Size = UDim2.new(1, -142, 1, -56),
+			Size = UDim2.new(1, -56, 1, -56),
 			CanvasSize = UDim2.new(0, 0, 0, 466),
 			ScrollBarThickness = 3,
 			ScrollBarImageColor3 = themes.TextColor,
@@ -388,13 +388,21 @@ do
 		})
         button.MouseEnter:Connect(function()
             library.pagesContainer.Parent:TweenSize(UDim2.new(0, 126, 1, -38), Enum.EasingDirection.In,	Enum.EasingStyle.Sine, .8, true)
-            container:TweenSize(UDim2.new(1, -142, 1, -56), Enum.EasingDirection.In, Enum.EasingStyle.Sine, .8, true)
-            container:TweenPosition(UDim2.new(0, 134, 0, 46), Enum.EasingDirection.In, Enum.EasingStyle.Sine, .8, true)
+			for i,v in pairs(library.container.Main:GetChildren()) do
+				if v:IsA("ScrollingFrame") then
+					v:TweenSize(UDim2.new(1, -142, 1, -56), Enum.EasingDirection.In, Enum.EasingStyle.Sine, .8, true)
+					v:TweenPosition(UDim2.new(0, 134, 0, 46), Enum.EasingDirection.In, Enum.EasingStyle.Sine, .8, true)
+				end
+			end
         end)
         button.MouseLeave:Connect(function()
             library.pagesContainer.Parent:TweenSize(UDim2.new(0, 40, 1, -38), Enum.EasingDirection.In, Enum.EasingStyle.Sine, .5, true)
-            container:TweenSize(UDim2.new(1, -56, 1, -56), Enum.EasingDirection.In, Enum.EasingStyle.Sine, .5, true)
-            container:TweenPosition(UDim2.new(0, 48, 0, 46), Enum.EasingDirection.In, Enum.EasingStyle.Sine, .5, true)
+			for i,v in pairs(library.container.Main:GetChildren()) do
+				if v:IsA("ScrollingFrame") then
+					v:TweenSize(UDim2.new(1, -56, 1, -56), Enum.EasingDirection.In, Enum.EasingStyle.Sine, .5, true)
+					v:TweenPosition(UDim2.new(0, 48, 0, 46), Enum.EasingDirection.In, Enum.EasingStyle.Sine, .5, true)
+				end
+			end
         end)
 		
 		return setmetatable({
