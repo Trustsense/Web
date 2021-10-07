@@ -1,5 +1,5 @@
 -- VenixUI based
-repeat wait() until game:IsLoaded();
+repeat wait() until game:IsLoaded() and game:GetService("Players").LocalPlayer:FindFirstChild("PlayerGui") and game:GetService("Players").LocalPlayer.Character
 
 game:GetService("UserInputService").MouseIconEnabled = true
 
@@ -886,12 +886,16 @@ do
                 TextYAlignment = 0,
                 TextTransparency = 0.10000000149012
             })
-            
+        
             local sizeY = 0
             for i = 1, Label:len() do
                 label.Text = Label:sub(1, i)
                 label.Size = UDim2.new(1, 0, 0, label.TextBounds.Y)
             end
+
+			label:GetPropertyChangedSignal("Size"):Connect(function()
+				self:Resize()
+			end)
 
             table.insert(self.modules, label)
             return label
@@ -916,10 +920,13 @@ do
                 Label.Size = UDim2.new(1, 0, 0, Label.TextBounds.Y)
             end
 
+			Label:GetPropertyChangedSignal("Size"):Connect(function()
+				self:Resize()
+			end)
+
             table.insert(self.modules, Label)
             return Label
         end
-        self:Resize()
 	end
 	
 	function section:addButton(title, callback, ToolTipText)
@@ -2745,7 +2752,6 @@ do
 end
 
 return library
-
 --[[
 if game.CoreGui:FindFirstChild(game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name) then
     game.CoreGui:FindFirstChild(game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name):Destroy()
@@ -2778,7 +2784,7 @@ Selection:addTextbox("TextBox", "Dropdown Text", function()end, "ToolTip Text")
 Selection:addKeybind("Keybind", Enum.KeyCode.LeftAlt, function()end, function()end, "ToolTip Text")
 Selection:addColorPicker("ColorPicker", Color3.fromRGB(255, 255, 255), function()end, "ToolTip Text")
 Selection:addSlider("Slider", 3, 0, 10, function()end, "ToolTip Text")
-Selection:addDropdown("Dropdown", {"Element 1", "Element 2"}, function()end, "ToolTip Text")
+Selection:addDropdown("Dropdown", {"Element 1", "Element 2"}, function(v) print(v) end, "ToolTip Text")
 
 window:Notify("Snxw Hub", "Welcome " .. player.Name, 5)
 window:NotifyQuestion("Snxw Hub", "NotifyQuestion", function(value)
@@ -2788,4 +2794,4 @@ window:NotifyQuestion("Snxw Hub", "NotifyQuestion", function(value)
 		print("decline")
 	end
 end, 5)
-]]
+]]--
