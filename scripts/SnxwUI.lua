@@ -1,5 +1,5 @@
 -- VenixUI based
-repeat wait() until game:IsLoaded() and game:GetService("Players").LocalPlayer:FindFirstChild("PlayerGui") and game:GetService("Players").LocalPlayer.Character
+repeat wait() until game:IsLoaded() and game:GetService("Players").LocalPlayer:FindFirstChild("PlayerGui")
 
 game:GetService("UserInputService").MouseIconEnabled = true
 
